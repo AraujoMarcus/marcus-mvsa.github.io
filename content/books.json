@@ -1,0 +1,50 @@
+[
+  {
+    "category": "ai",
+    "title": "The Alignment Problem",
+    "author": "Brian Christian",
+    "note_en": "One of the clearest framings of why AI governance matters. It bridges technical alignment with real-world consequences — essential for anyone building AI systems at scale.",
+    "note_pt": "Uma das melhores formulações sobre por que governança de IA importa. Conecta alinhamento técnico com consequências reais — essencial para quem constrói sistemas de AI em escala.",
+    "note_es": "Una de las mejores formulaciones de por qué importa la gobernanza de IA. Conecta alineamiento técnico con consecuencias reales — esencial para quien construye sistemas de IA a escala."
+  },
+  {
+    "category": "econ",
+    "title": "The Network Effects Bible",
+    "author": "NFX / James Currier",
+    "note_en": "Not a traditional book, but a foundational framework. Understanding network effects is critical for modeling economic interconnections — the same intuition behind graph-based economic modeling.",
+    "note_pt": "Não é um livro tradicional, mas um framework fundamental. Entender efeitos de rede é crítico para modelar interconexões econômicas — a mesma intuição por trás de modelagem econômica baseada em grafos.",
+    "note_es": "No es un libro tradicional, pero sí un framework fundamental. Entender efectos de red es crítico para modelar interconexiones económicas — la misma intuición detrás del modelado económico basado en grafos."
+  },
+  {
+    "category": "strategy",
+    "title": "An Elegant Puzzle",
+    "author": "Will Larson",
+    "note_en": "The best book on engineering management I've read. Covers team sizing, organizational design, and technical strategy — directly applicable to scaling and then decentralizing AI teams.",
+    "note_pt": "O melhor livro sobre gestão de engenharia que já li. Cobre dimensionamento de times, design organizacional e estratégia técnica — diretamente aplicável a escalar e depois descentralizar times de IA.",
+    "note_es": "El mejor libro sobre gestión de ingeniería que he leído. Cubre dimensionamiento de equipos, diseño organizacional y estrategia técnica — directamente aplicable a escalar y luego descentralizar equipos de IA."
+  },
+  {
+    "category": "gov",
+    "title": "Power and Prediction",
+    "author": "Ajay Agrawal, Joshua Gans, Avi Goldfarb",
+    "note_en": "A sharp analysis of AI as a decision-making technology. It reframes the AI governance conversation around prediction systems and institutional adaptation — exactly where policy meets implementation.",
+    "note_pt": "Uma análise afiada da IA como tecnologia de tomada de decisão. Reformula a conversa sobre governança de IA em torno de sistemas de previsão e adaptação institucional — exatamente onde política encontra implementação.",
+    "note_es": "Un análisis agudo de la IA como tecnología de toma de decisiones. Reformula la conversación sobre gobernanza de IA en torno a sistemas de predicción y adaptación institucional — exactamente donde la política se encuentra con la implementación."
+  },
+  {
+    "category": "econ",
+    "title": "Complexity Economics",
+    "author": "W. Brian Arthur",
+    "note_en": "Arthur challenges equilibrium-based economics with a view that economies are living, adaptive systems. This is the intellectual foundation for using graph neural networks to study economic resilience.",
+    "note_pt": "Arthur desafia a economia baseada em equilíbrio com uma visão de que economias são sistemas vivos e adaptativos. Esta é a base intelectual para usar redes neurais em grafos no estudo de resiliência econômica.",
+    "note_es": "Arthur desafía la economía basada en equilibrio con una visión de que las economías son sistemas vivos y adaptativos. Esta es la base intelectual para usar redes neuronales en grafos para estudiar resiliencia económica."
+  },
+  {
+    "category": "ai",
+    "title": "Designing Machine Learning Systems",
+    "author": "Chip Huyen",
+    "note_en": "The most practical guide for production ML I know. It fills the gap between academic ML and the messy reality of deploying models in real companies — where governance actually happens.",
+    "note_pt": "O guia mais prático para ML em produção que conheço. Preenche a lacuna entre ML acadêmico e a realidade complexa de colocar modelos em produção — onde governança realmente acontece.",
+    "note_es": "La guía más práctica para ML en producción que conozco. Llena la brecha entre ML académico y la realidad compleja de desplegar modelos en empresas reales — donde la gobernanza realmente ocurre."
+  }
+]

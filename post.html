@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FAFCFE">
+<title>What Graph Neural Networks reveal about economic fragility — Marcus Araujo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFCFE;
+  --surface: #F0F4F8;
+  --border: #D8E0EA;
+  --text: #334155;
+  --text-dim: #6B7A8D;
+  --text-bright: #1A2B3F;
+  --navy: #1A3C6E;
+  --accent: #2471A3;
+  --pad-x: clamp(1rem, 4vw + 0.5rem, 4rem);
+  --pad-y: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--text); line-height: 1.7;
+  background: var(--bg);
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Nav (compact) */
+.post-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,252,254,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.post-nav .inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 var(--pad-x);
+  height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.post-nav .logo {
+  font-weight: 700; font-size: 1rem; color: var(--navy);
+  text-decoration: none;
+}
+.post-nav .back {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem; color: var(--text-dim);
+}
+.post-nav .back:hover { color: var(--accent); text-decoration: none; }
+
+/* Post page layout: main + sidebar */
+.post-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--pad-y) var(--pad-x) 3rem;
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .post-page {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .post-sidebar { order: -1; }
+}
+
+/* Article column */
+.post-main {
+  min-width: 0;
+  max-width: 720px;
+}
+
+.post-article h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--text-bright);
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+.post-meta-line {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem;
+}
+.post-meta-line .post-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.post-meta-line .post-tag {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.post-meta-line .post-tag.tag-medium { background: rgba(13,122,62,0.12); color: #0D7A3E; }
+.post-meta-line .post-tag.tag-ml { background: rgba(107,33,168,0.12); color: #6B21A8; }
+.post-meta-line .post-tag.tag-econ { background: rgba(36,113,163,0.12); color: var(--accent); }
+
+/* Article body: texto corrido */
+.post-article .post-body {
+  font-size: clamp(0.95rem, 1.2vw + 0.85rem, 1.05rem);
+  line-height: 1.8;
+  color: var(--text);
+}
+.post-article .post-body p {
+  margin-bottom: 1.25rem;
+}
+.post-article .post-body p:last-child { margin-bottom: 0; }
+
+.post-article .post-body h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.post-article .post-body h2:first-of-type { margin-top: 0; }
+
+.post-article .post-body h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-article .post-body blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--accent);
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* Sidebar: On this page */
+.post-sidebar {
+  position: sticky;
+  top: calc(52px + 1.5rem);
+}
+@media (max-width: 900px) {
+  .post-sidebar { position: static; }
+}
+
+.post-sidebar .sidebar-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+
+.post-sidebar nav ul {
+  list-style: none;
+}
+.post-sidebar nav li {
+  margin-bottom: 0.35rem;
+}
+.post-sidebar nav li ul {
+  margin-left: 0.75rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+.post-sidebar nav a {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  display: block;
+  padding: 0.15rem 0;
+  border-left: 2px solid transparent;
+  padding-left: 0.5rem;
+  margin-left: -2px;
+}
+.post-sidebar nav a:hover {
+  color: var(--accent);
+  border-left-color: var(--accent);
+}
+</style>
+</head>
+<body>
+
+<header class="post-nav">
+  <div class="inner">
+    <a href="index.html" class="logo">Marcus Araujo</a>
+    <a href="index.html#writing" class="back">&larr; Writing</a>
+  </div>
+</header>
+
+<div class="post-page">
+  <main class="post-main" id="main">
+    <article class="post-article">
+      <h1>What Graph Neural Networks reveal about economic fragility that traditional indicators miss</h1>
+      <div class="post-meta-line">
+        <span class="post-tags">
+          <span class="post-tag tag-medium">Medium</span>
+          <span class="post-tag tag-ml">machine learning</span>
+          <span class="post-tag tag-econ">economic resilience</span>
+        </span>
+        <span>Marcus Araujo</span>
+        <span>Published — June 2025</span>
+      </div>
+
+      <div class="post-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Traditional economic indicators often rely on aggregate statistics that smooth over structural dependencies between sectors and regions. Graph neural networks offer a way to model these dependencies explicitly, capturing how shocks propagate through trade and financial networks.</p>
+
+        <h2 id="the-map-is-not-the-territory">The map is not the territory</h2>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Any representation of the economy—whether a set of leading indicators or a network model—is a simplification. The question is whether that simplification preserves the features that matter for early warning.</p>
+        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Graph-based representations naturally encode who trades with whom, who lends to whom, and how those links change over time. That structure is often invisible in traditional time series.</p>
+
+        <h2 id="why-graphs-beat-tabular">Why graphs beat tabular data for connected systems</h2>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. In tabular datasets, each country or sector is a row; the relationships between them are lost. In a graph, the edges are first-class citizens.</p>
+        <h3 id="message-passing">Message passing and aggregation</h3>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. GNNs learn to pass information along edges and aggregate at nodes—mirroring how a demand shock in one country affects its trading partners, and then their partners in turn. This is exactly the kind of cascade that early warning systems need to detect.</p>
+        <h3 id="temporal-signals">Temporal signals</h3>
+        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. Temporal graph neural networks extend this idea to sequences of graphs, so the evolution of the network itself becomes a signal. When a normally stable link suddenly weakens or when contagion paths shorten, the model can pick that up before aggregate GDP or inflation figures move.</p>
+
+        <h2 id="the-regret">The regret</h2>
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati. In forecasting, we care about regret: the gap between what we could have known and what we actually used. If we ignore network structure, we may miss vulnerability that was present in the data all along.</p>
+        <blockquote>Good design starts with asking the right questions, not jumping into abstractions. The same holds for economic early warning: we need to ask which dependencies matter, and then build models that respect them.</blockquote>
+
+        <h2 id="conclusion">Conclusion</h2>
+        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Graph neural networks are not a replacement for economic theory or domain judgment. They are a tool for making the structure of interdependence explicit and for learning patterns that traditional indicators may smooth away. For regional resilience and early warning, that structure often is the story.</p>
+      </div>
+    </article>
+  </main>
+
+  <aside class="post-sidebar" aria-label="On this page">
+    <p class="sidebar-title">On this page</p>
+    <nav>
+      <ul>
+        <li><a href="#the-map-is-not-the-territory">The map is not the territory</a></li>
+        <li><a href="#why-graphs-beat-tabular">Why graphs beat tabular data</a>
+          <ul>
+            <li><a href="#message-passing">Message passing and aggregation</a></li>
+            <li><a href="#temporal-signals">Temporal signals</a></li>
+          </ul>
+        </li>
+        <li><a href="#the-regret">The regret</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </nav>
+  </aside>
+</div>
+
+<footer style="max-width:1200px;margin:0 auto;text-align:center;padding:var(--pad-y) var(--pad-x) 2rem;font-size:0.7rem;color:var(--text-dim);border-top:1px solid var(--border);font-family:'IBM Plex Mono',monospace">
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/marcus-mvsa/" target="_blank">LinkedIn</a>
+  </div>
+  &copy; 2026 Marcus Araujo
+</footer>
+
+</body>
+</html>

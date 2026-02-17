@@ -609,6 +609,7 @@ footer .footer-links a:hover { color: var(--accent); text-decoration: none; }
     </button>
     <div class="nav-right" id="nav-menu" role="navigation">
       <div class="links">
+        <a href="posts.html">posts</a>
         <a href="#writing" data-nav="writing">
           <span data-lang="en" class="active">writing</span>
           <span data-lang="pt">escritos</span>
@@ -723,53 +724,7 @@ footer .footer-links a:hover { color: var(--accent); text-decoration: none; }
     <a href="#">rss &rarr;</a>
   </div>
 
-  <div class="post-list">
-
-    <a href="https://tiinside.com.br/22/05/2024/maturidade-em-ia-um-pilar-essencial-para-o-mundo-fiscal-e-contabil/" class="post-item" target="_blank">
-      <span class="post-title">
-        <span class="post-tag tag-press">Press</span>
-        Maturidade em IA: um pilar essencial para o mundo fiscal e contábil
-      </span>
-      <span class="post-meta">TI Inside · May 2024</span>
-    </a>
-
-    <a href="#" class="post-item">
-      <span class="post-title">
-        <span class="post-tag tag-medium">Medium</span>
-        What Graph Neural Networks reveal about economic fragility that traditional indicators miss
-      </span>
-      <span class="post-meta">
-        <span data-lang="en" class="active">Coming soon</span>
-        <span data-lang="pt">Em breve</span>
-        <span data-lang="es">Próximamente</span>
-      </span>
-    </a>
-
-    <a href="#" class="post-item">
-      <span class="post-title">
-        <span class="post-tag tag-medium">Medium</span>
-        Scaling an AI team to 40 people — and why I then made it smaller
-      </span>
-      <span class="post-meta">
-        <span data-lang="en" class="active">Coming soon</span>
-        <span data-lang="pt">Em breve</span>
-        <span data-lang="es">Próximamente</span>
-      </span>
-    </a>
-
-    <a href="#" class="post-item">
-      <span class="post-title">
-        <span class="post-tag tag-medium">Medium</span>
-        AI Governance in LatAm fintech: what regulators aren't asking yet
-      </span>
-      <span class="post-meta">
-        <span data-lang="en" class="active">Coming soon</span>
-        <span data-lang="pt">Em breve</span>
-        <span data-lang="es">Próximamente</span>
-      </span>
-    </a>
-
-  </div>
+  <div class="post-list" id="writing-list"></div>
 </div>
 
 <!-- NOTEBOOKS -->
@@ -787,73 +742,7 @@ footer .footer-links a:hover { color: var(--accent); text-decoration: none; }
     </a>
   </div>
 
-  <div class="notebook-grid">
-
-    <div class="notebook-card">
-      <span class="nb-lang">Python</span>
-      <h3>Graph Neural Networks — from scratch</h3>
-      <p>
-        <span data-lang="en" class="active">Build a GNN step by step. No frameworks, just numpy. Understand message passing, aggregation, and why graphs beat tabular data for connected systems.</span>
-        <span data-lang="pt">Construa uma GNN passo a passo. Sem frameworks, só numpy. Entenda message passing, agregação, e por que grafos superam dados tabulares em sistemas conectados.</span>
-        <span data-lang="es">Construye una GNN paso a paso. Sin frameworks, solo numpy. Entiende message passing, agregación, y por qué los grafos superan datos tabulares en sistemas conectados.</span>
-      </p>
-      <div class="nb-links">
-        <a href="#" target="_blank">GitHub</a>
-        <a href="#" target="_blank">NotebookLab</a>
-      </div>
-    </div>
-
-    <div class="notebook-card">
-      <span class="nb-lang">Python</span>
-      <h3>
-        <span data-lang="en" class="active">Economic networks as graphs</span>
-        <span data-lang="pt">Redes econômicas como grafos</span>
-        <span data-lang="es">Redes económicas como grafos</span>
-      </h3>
-      <p>
-        <span data-lang="en" class="active">How to model global trade and financial flows as a dynamic graph. Visualize how shocks propagate between countries using real IMF data.</span>
-        <span data-lang="pt">Como modelar fluxos comerciais e financeiros globais como grafos dinâmicos. Visualize como choques se propagam entre países usando dados reais do FMI.</span>
-        <span data-lang="es">Cómo modelar flujos comerciales y financieros globales como grafos dinámicos. Visualiza cómo los shocks se propagan entre países usando datos reales del FMI.</span>
-      </p>
-      <div class="nb-links">
-        <a href="#" target="_blank">GitHub</a>
-        <a href="#" target="_blank">NotebookLab</a>
-      </div>
-    </div>
-
-    <div class="notebook-card">
-      <span class="nb-lang">Python</span>
-      <h3>
-        <span data-lang="en" class="active">Temporal patterns in macro data</span>
-        <span data-lang="pt">Padrões temporais em dados macro</span>
-        <span data-lang="es">Patrones temporales en datos macro</span>
-      </h3>
-      <p>
-        <span data-lang="en" class="active">Detect temporal patterns in macroeconomic indicators. Compare LSTM vs Temporal GNN approaches for capturing sequential economic signals.</span>
-        <span data-lang="pt">Detecte padrões temporais em indicadores macroeconômicos. Compare abordagens LSTM vs Temporal GNN para capturar sinais econômicos sequenciais.</span>
-        <span data-lang="es">Detecta patrones temporales en indicadores macroeconómicos. Compara enfoques LSTM vs Temporal GNN para capturar señales económicas secuenciales.</span>
-      </p>
-      <div class="nb-links">
-        <a href="#" target="_blank">GitHub</a>
-        <a href="#" target="_blank">NotebookLab</a>
-      </div>
-    </div>
-
-    <div class="notebook-card">
-      <span class="nb-lang">Python</span>
-      <h3>EconoGNN — early warning demo</h3>
-      <p>
-        <span data-lang="en" class="active">Run the EconoGNN framework on sample data. See how it identifies economic vulnerability signals before conventional indicators react.</span>
-        <span data-lang="pt">Execute o framework EconoGNN em dados de exemplo. Veja como ele identifica sinais de vulnerabilidade econômica antes dos indicadores convencionais reagirem.</span>
-        <span data-lang="es">Ejecuta el framework EconoGNN con datos de ejemplo. Observa cómo identifica señales de vulnerabilidad económica antes de que reaccionen los indicadores convencionales.</span>
-      </p>
-      <div class="nb-links">
-        <a href="#" target="_blank">GitHub</a>
-        <a href="#" target="_blank">NotebookLab</a>
-      </div>
-    </div>
-
-  </div>
+  <div class="notebook-grid" id="notebooks-grid"></div>
 </div>
 
 <!-- RESEARCH -->
@@ -867,41 +756,7 @@ footer .footer-links a:hover { color: var(--accent); text-decoration: none; }
     <a href="#" target="_blank">google scholar &rarr;</a>
   </div>
 
-  <div class="post-list">
-
-    <a href="#" class="post-item" target="_blank">
-      <span class="post-title">
-        <span class="post-tag tag-paper">PLOS ONE</span>
-        Early Warning Systems for the Global Economy: Leveraging Temporal Graph Neural Networks to Safeguard Regional Resilience
-      </span>
-      <span class="post-meta">2026</span>
-    </a>
-
-    <a href="#" class="post-item" target="_blank">
-      <span class="post-title">
-        <span class="post-tag tag-paper">SBBD</span>
-        <span data-lang="en" class="active">Publication during PhD — Brazilian Symposium on Databases</span>
-        <span data-lang="pt">Publicação durante o PhD — Simpósio Brasileiro de Banco de Dados</span>
-        <span data-lang="es">Publicación durante el PhD — Simposio Brasileño de Bases de Datos</span>
-      </span>
-      <span class="post-meta">PhD · USP</span>
-    </a>
-
-    <a href="#" class="post-item" target="_blank">
-      <span class="post-title">
-        <span class="post-tag tag-paper">Paper</span>
-        <span data-lang="en" class="active">3 publications during graduation</span>
-        <span data-lang="pt">3 publicações durante a graduação</span>
-        <span data-lang="es">3 publicaciones durante la graduación</span>
-      </span>
-      <span class="post-meta">
-        <span data-lang="en" class="active">Graduation</span>
-        <span data-lang="pt">Graduação</span>
-        <span data-lang="es">Graduación</span>
-      </span>
-    </a>
-
-  </div>
+  <div class="post-list" id="research-list"></div>
 </div>
 
 <!-- BOOKS -->
@@ -914,75 +769,7 @@ footer .footer-links a:hover { color: var(--accent); text-decoration: none; }
     </h2>
   </div>
 
-  <div class="book-grid">
-
-    <div class="book-card">
-      <span class="book-category cat-ai">AI</span>
-      <h3>The Alignment Problem</h3>
-      <div class="book-author">Brian Christian</div>
-      <div class="book-note">
-        <span data-lang="en" class="active">One of the clearest framings of why AI governance matters. It bridges technical alignment with real-world consequences — essential for anyone building AI systems at scale.</span>
-        <span data-lang="pt">Uma das melhores formulações sobre por que governança de IA importa. Conecta alinhamento técnico com consequências reais — essencial para quem constrói sistemas de AI em escala.</span>
-        <span data-lang="es">Una de las mejores formulaciones de por qué importa la gobernanza de IA. Conecta alineamiento técnico con consecuencias reales — esencial para quien construye sistemas de IA a escala.</span>
-      </div>
-    </div>
-
-    <div class="book-card">
-      <span class="book-category cat-econ">Economics</span>
-      <h3>The Network Effects Bible</h3>
-      <div class="book-author">NFX / James Currier</div>
-      <div class="book-note">
-        <span data-lang="en" class="active">Not a traditional book, but a foundational framework. Understanding network effects is critical for modeling economic interconnections — the same intuition behind graph-based economic modeling.</span>
-        <span data-lang="pt">Não é um livro tradicional, mas um framework fundamental. Entender efeitos de rede é crítico para modelar interconexões econômicas — a mesma intuição por trás de modelagem econômica baseada em grafos.</span>
-        <span data-lang="es">No es un libro tradicional, pero sí un framework fundamental. Entender efectos de red es crítico para modelar interconexiones económicas — la misma intuición detrás del modelado económico basado en grafos.</span>
-      </div>
-    </div>
-
-    <div class="book-card">
-      <span class="book-category cat-strategy">Strategy</span>
-      <h3>An Elegant Puzzle</h3>
-      <div class="book-author">Will Larson</div>
-      <div class="book-note">
-        <span data-lang="en" class="active">The best book on engineering management I've read. Covers team sizing, organizational design, and technical strategy — directly applicable to scaling and then decentralizing AI teams.</span>
-        <span data-lang="pt">O melhor livro sobre gestão de engenharia que já li. Cobre dimensionamento de times, design organizacional e estratégia técnica — diretamente aplicável a escalar e depois descentralizar times de IA.</span>
-        <span data-lang="es">El mejor libro sobre gestión de ingeniería que he leído. Cubre dimensionamiento de equipos, diseño organizacional y estrategia técnica — directamente aplicable a escalar y luego descentralizar equipos de IA.</span>
-      </div>
-    </div>
-
-    <div class="book-card">
-      <span class="book-category cat-gov">Governance</span>
-      <h3>Power and Prediction</h3>
-      <div class="book-author">Ajay Agrawal, Joshua Gans, Avi Goldfarb</div>
-      <div class="book-note">
-        <span data-lang="en" class="active">A sharp analysis of AI as a decision-making technology. It reframes the AI governance conversation around prediction systems and institutional adaptation — exactly where policy meets implementation.</span>
-        <span data-lang="pt">Uma análise afiada da IA como tecnologia de tomada de decisão. Reformula a conversa sobre governança de IA em torno de sistemas de previsão e adaptação institucional — exatamente onde política encontra implementação.</span>
-        <span data-lang="es">Un análisis agudo de la IA como tecnología de toma de decisiones. Reformula la conversación sobre gobernanza de IA en torno a sistemas de predicción y adaptación institucional — exactamente donde la política se encuentra con la implementación.</span>
-      </div>
-    </div>
-
-    <div class="book-card">
-      <span class="book-category cat-econ">Economics</span>
-      <h3>Complexity Economics</h3>
-      <div class="book-author">W. Brian Arthur</div>
-      <div class="book-note">
-        <span data-lang="en" class="active">Arthur challenges equilibrium-based economics with a view that economies are living, adaptive systems. This is the intellectual foundation for using graph neural networks to study economic resilience.</span>
-        <span data-lang="pt">Arthur desafia a economia baseada em equilíbrio com uma visão de que economias são sistemas vivos e adaptativos. Esta é a base intelectual para usar redes neurais em grafos no estudo de resiliência econômica.</span>
-        <span data-lang="es">Arthur desafía la economía basada en equilibrio con una visión de que las economías son sistemas vivos y adaptativos. Esta es la base intelectual para usar redes neuronales en grafos para estudiar resiliencia económica.</span>
-      </div>
-    </div>
-
-    <div class="book-card">
-      <span class="book-category cat-ai">AI</span>
-      <h3>Designing Machine Learning Systems</h3>
-      <div class="book-author">Chip Huyen</div>
-      <div class="book-note">
-        <span data-lang="en" class="active">The most practical guide for production ML I know. It fills the gap between academic ML and the messy reality of deploying models in real companies — where governance actually happens.</span>
-        <span data-lang="pt">O guia mais prático para ML em produção que conheço. Preenche a lacuna entre ML acadêmico e a realidade complexa de colocar modelos em produção — onde governança realmente acontece.</span>
-        <span data-lang="es">La guía más práctica para ML en producción que conozco. Llena la brecha entre ML académico y la realidad compleja de desplegar modelos en empresas reales — donde la gobernanza realmente ocurre.</span>
-      </div>
-    </div>
-
-  </div>
+  <div class="book-grid" id="books-grid"></div>
 </div>
 
 </main>
@@ -995,6 +782,7 @@ footer .footer-links a:hover { color: var(--accent); text-decoration: none; }
   &copy; 2026 Marcus Araujo
 </footer>
 
+<script src="content/load.js" data-content-base="content"></script>
 <script>
 function setLang(lang) {
   document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));

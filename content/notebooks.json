@@ -1,0 +1,38 @@
+[
+  {
+    "lang": "Python",
+    "title": "Graph Neural Networks — from scratch",
+    "description_en": "Build a GNN step by step. No frameworks, just numpy. Understand message passing, aggregation, and why graphs beat tabular data for connected systems.",
+    "description_pt": "Construa uma GNN passo a passo. Sem frameworks, só numpy. Entenda message passing, agregação, e por que grafos superam dados tabulares em sistemas conectados.",
+    "description_es": "Construye una GNN paso a paso. Sin frameworks, solo numpy. Entiende message passing, agregación, y por qué los grafos superan datos tabulares en sistemas conectados.",
+    "links": [{ "label": "GitHub", "url": "#" }, { "label": "NotebookLab", "url": "#" }]
+  },
+  {
+    "lang": "Python",
+    "title_en": "Economic networks as graphs",
+    "title_pt": "Redes econômicas como grafos",
+    "title_es": "Redes económicas como grafos",
+    "description_en": "How to model global trade and financial flows as a dynamic graph. Visualize how shocks propagate between countries using real IMF data.",
+    "description_pt": "Como modelar fluxos comerciais e financeiros globais como grafos dinâmicos. Visualize como choques se propagam entre países usando dados reais do FMI.",
+    "description_es": "Cómo modelar flujos comerciales y financieros globales como grafos dinámicos. Visualiza cómo los shocks se propagan entre países usando datos reales del FMI.",
+    "links": [{ "label": "GitHub", "url": "#" }, { "label": "NotebookLab", "url": "#" }]
+  },
+  {
+    "lang": "Python",
+    "title_en": "Temporal patterns in macro data",
+    "title_pt": "Padrões temporais em dados macro",
+    "title_es": "Patrones temporales en datos macro",
+    "description_en": "Detect temporal patterns in macroeconomic indicators. Compare LSTM vs Temporal GNN approaches for capturing sequential economic signals.",
+    "description_pt": "Detecte padrões temporais em indicadores macroeconômicos. Compare abordagens LSTM vs Temporal GNN para capturar sinais econômicos sequenciais.",
+    "description_es": "Detecta patrones temporales en indicadores macroeconómicos. Compara enfoques LSTM vs Temporal GNN para capturar señales económicas secuenciales.",
+    "links": [{ "label": "GitHub", "url": "#" }, { "label": "NotebookLab", "url": "#" }]
+  },
+  {
+    "lang": "Python",
+    "title": "EconoGNN — early warning demo",
+    "description_en": "Run the EconoGNN framework on sample data. See how it identifies economic vulnerability signals before conventional indicators react.",
+    "description_pt": "Execute o framework EconoGNN em dados de exemplo. Veja como ele identifica sinais de vulnerabilidade econômica antes dos indicadores convencionais reagirem.",
+    "description_es": "Ejecuta el framework EconoGNN con datos de ejemplo. Observa cómo identifica señales de vulnerabilidad económica antes de que reaccionen los indicadores convencionales.",
+    "links": [{ "label": "GitHub", "url": "#" }, { "label": "NotebookLab", "url": "#" }]
+  }
+]
