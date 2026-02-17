@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcus Araujo — AI · Research · Writing</title>
+<meta name="description" content="AI leader, researcher, and writer. Exploring AI governance, economic resilience, and graph neural networks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFCFE;
+  --surface: #F0F4F8;
+  --surface-2: #E8EDF3;
+  --border: #D8E0EA;
+  --border-hover: #B8C5D4;
+  --text: #334155;
+  --text-dim: #6B7A8D;
+  --text-bright: #1A2B3F;
+  --navy: #1A3C6E;
+  --accent: #2471A3;
+  --accent-dim: rgba(36,113,163,0.08);
+  --green: #0D7A3E;
+  --green-dim: rgba(13,122,62,0.08);
+  --amber: #B45309;
+  --amber-dim: rgba(180,83,9,0.08);
+  --purple: #6B21A8;
+  --purple-dim: rgba(107,33,168,0.08);
+  --white: #FFFFFF;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text); line-height: 1.7;
+  background: var(--bg);
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.25;
+  pointer-events: none; z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed; top: 0; left: 0; width: 100%; height: 400px;
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(36,113,163,0.04) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* hide all lang blocks by default, show active */
+[data-lang] { display: none; }
+[data-lang].active { display: block; }
+span[data-lang].active { display: inline; }
+
+/* ─── NAV ─────────────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(250,252,254,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+nav .inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  height: 56px;
+}
+
+nav .logo {
+  font-weight: 700; font-size: 1.1rem; color: var(--navy);
+  text-decoration: none; letter-spacing: -0.5px;
+}
+
+nav .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+
+nav .links { display: flex; gap: 1.5rem; }
+
+nav .links a {
+  text-decoration: none; color: var(--text-dim); font-size: 0.82rem;
+  font-weight: 500; transition: color 0.2s;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+nav .links a:hover { color: var(--navy); text-decoration: none; }
+
+/* lang switcher */
+.lang-switch {
+  display: flex; gap: 0; border: 1px solid var(--border); border-radius: 4px;
+  overflow: hidden; margin-left: 1rem;
+}
+
+.lang-switch button {
+  background: none; border: none; cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem; font-weight: 500;
+  padding: 0.25rem 0.5rem; color: var(--text-dim);
+  transition: all 0.15s;
+  border-right: 1px solid var(--border);
+}
+
+.lang-switch button:last-child { border-right: none; }
+
+.lang-switch button:hover { color: var(--navy); }
+
+.lang-switch button.active {
+  background: var(--navy); color: var(--white);
+}
+
+/* ─── INTRO ───────────────────────────────────────────────────────── */
+.intro {
+  max-width: 1200px; margin: 0 auto; padding: 5.5rem 4rem 2.5rem;
+  position: relative; z-index: 1;
+}
+
+.intro-message {
+  max-width: 580px; color: var(--text-dim); line-height: 1.9;
+  font-size: 0.95rem;
+}
+
+.intro-message .line {
+  display: block; margin-bottom: 0.6rem;
+}
+
+.intro-message .line:last-child { margin-bottom: 0; }
+
+.intro-message .signoff {
+  margin-top: 0.4rem; font-style: italic; color: var(--text-dim);
+}
+
+.intro .mini-links {
+  margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center;
+}
+
+.intro .mini-links a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem; font-weight: 400; color: var(--text-dim);
+  border: 1px solid var(--border); padding: 0.3rem 0.85rem;
+  border-radius: 4px; transition: all 0.2s;
+}
+
+.intro .mini-links a:hover {
+  border-color: var(--navy); color: var(--navy); text-decoration: none;
+}
+
+/* ─── CRESTS ──────────────────────────────────────────────────────── */
+.crests {
+  display: flex; align-items: center; gap: 1rem;
+  margin-left: auto; opacity: 0.35;
+  transition: opacity 0.3s;
+}
+
+.crests:hover { opacity: 0.6; }
+
+.crests img, .crests .crest-svg {
+  height: 32px; width: auto;
+  filter: grayscale(100%);
+  transition: filter 0.3s;
+}
+
+.crests:hover img, .crests:hover .crest-svg { filter: grayscale(30%); }
+
+.crests .crest-sep {
+  width: 1px; height: 20px; background: var(--border);
+}
+
+/* ─── SECTION COMMON ─────────────────────────────────────────────── */
+.section {
+  max-width: 1200px; margin: 0 auto; padding: 2.5rem 4rem;
+  position: relative; z-index: 1;
+}
+
+.section-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 1.25rem; border-bottom: 1px solid var(--border);
+  padding-bottom: 0.6rem;
+}
+
+.section-header h2 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem; font-weight: 500; color: var(--text-dim);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+
+.section-header a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem; font-weight: 400; color: var(--text-dim);
+}
+
+.section-header a:hover { color: var(--accent); text-decoration: none; }
+
+/* ─── WRITING ─────────────────────────────────────────────────────── */
+.post-list { display: flex; flex-direction: column; gap: 0; }
+
+.post-item {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 0.85rem 0.75rem; border-bottom: 1px solid var(--border);
+  border-radius: 4px; transition: all 0.15s;
+  margin: 0 -0.75rem;
+}
+
+.post-item:last-child { border-bottom: none; }
+
+.post-item:hover { background: var(--surface); }
+
+.post-title {
+  font-size: 0.9rem; font-weight: 400; color: var(--text);
+  text-decoration: none; flex: 1;
+}
+
+.post-item:hover .post-title { color: var(--text-bright); }
+
+.post-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem; color: var(--text-dim); white-space: nowrap;
+  margin-left: 2rem;
+}
+
+.post-tag {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  padding: 0.15rem 0.45rem; border-radius: 3px; margin-right: 0.5rem;
+}
+
+.tag-medium { background: var(--green-dim); color: var(--green); }
+.tag-press { background: var(--accent-dim); color: var(--accent); }
+.tag-paper { background: var(--purple-dim); color: var(--purple); }
+
+.tag-101, .tag-201 {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem; font-weight: 500;
+  padding: 0.1rem 0.4rem; border-radius: 3px;
+  vertical-align: middle;
+}
+.tag-101 { background: var(--green-dim); color: var(--green); }
+.tag-201 { background: var(--amber-dim); color: var(--amber); }
+
+/* ─── NOTEBOOKS ───────────────────────────────────────────────────── */
+.notebook-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;
+}
+
+.notebook-card {
+  padding: 1.25rem; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  transition: border-color 0.2s;
+}
+
+.notebook-card:hover { border-color: var(--border-hover); }
+
+.notebook-card h3 {
+  font-size: 0.88rem; font-weight: 600; color: var(--text-bright);
+  margin-bottom: 0.35rem;
+}
+
+.notebook-card p {
+  font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.75rem;
+  line-height: 1.55;
+}
+
+.notebook-card .nb-links { display: flex; gap: 0.6rem; }
+
+.notebook-card .nb-links a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem; font-weight: 500; color: var(--accent);
+  padding: 0.25rem 0.6rem; border: 1px solid var(--border);
+  border-radius: 3px; transition: all 0.15s;
+}
+
+.notebook-card .nb-links a:hover {
+  background: var(--accent); color: var(--white);
+  border-color: var(--accent); text-decoration: none;
+}
+
+.nb-lang {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem; font-weight: 500;
+  color: var(--amber); background: var(--amber-dim);
+  padding: 0.1rem 0.4rem; border-radius: 3px;
+  margin-bottom: 0.6rem;
+}
+
+/* ─── BOOKS ──────────────────────────────────────────────────────── */
+.book-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;
+}
+
+.book-card {
+  padding: 1.25rem; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  transition: border-color 0.2s;
+}
+
+.book-card:hover { border-color: var(--border-hover); }
+
+.book-card .book-category {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  padding: 0.1rem 0.4rem; border-radius: 3px;
+  margin-bottom: 0.6rem;
+}
+
+.cat-ai { background: var(--accent-dim); color: var(--accent); }
+.cat-econ { background: var(--green-dim); color: var(--green); }
+.cat-gov { background: var(--purple-dim); color: var(--purple); }
+.cat-strategy { background: var(--amber-dim); color: var(--amber); }
+
+.book-card h3 {
+  font-size: 0.88rem; font-weight: 600; color: var(--text-bright);
+  margin-bottom: 0.2rem;
+}
+
+.book-card .book-author {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem; color: var(--text-dim); margin-bottom: 0.5rem;
+}
+
+.book-card .book-note {
+  font-size: 0.8rem; color: var(--text-dim); line-height: 1.55;
+  font-style: italic;
+}
+
+/* ─── TICKER ──────────────────────────────────────────────────────── */
+.ticker {
+  overflow: hidden; white-space: nowrap;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 0;
+  position: relative; z-index: 1;
+  opacity: 0.35;
+}
+
+.ticker-inner {
+  display: inline-block;
+  animation: scroll 45s linear infinite;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem; color: var(--text-dim);
+  letter-spacing: 0.5px;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-item { display: inline; margin-right: 3rem; }
+.ticker-up { color: var(--green); }
+
+/* ─── FOOTER ─────────────────────────────────────────────────────── */
+footer {
+  max-width: 1200px; margin: 0 auto;
+  text-align: center; padding: 2.5rem 4rem 2rem;
+  font-size: 0.7rem; color: var(--text-dim);
+  border-top: 1px solid var(--border);
+  position: relative; z-index: 1;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+footer .footer-links { margin-bottom: 0.6rem; }
+
+footer .footer-links a {
+  color: var(--text-dim); margin: 0 0.6rem; font-weight: 400;
+  font-size: 0.75rem;
+}
+
+footer .footer-links a:hover { color: var(--accent); text-decoration: none; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav .inner, .intro, .section, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .notebook-grid { grid-template-columns: 1fr; }
+  .book-grid { grid-template-columns: 1fr; }
+  .post-item { flex-direction: column; gap: 0.25rem; }
+  .post-meta { margin-left: 0; }
+  nav .links { gap: 0.75rem; }
+  nav .links a { font-size: 0.7rem; }
+  .crests { display: none; }
+  .lang-switch { margin-left: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="inner">
+    <a href="#" class="logo">Marcus Araujo</a>
+    <div class="nav-right">
+      <div class="links">
+        <a href="#writing" data-nav="writing">
+          <span data-lang="en" class="active">writing</span>
+          <span data-lang="pt">escritos</span>
+          <span data-lang="es">escritos</span>
+        </a>
+        <a href="#notebooks">notebooks</a>
+        <a href="#research" data-nav="research">
+          <span data-lang="en" class="active">research</span>
+          <span data-lang="pt">pesquisa</span>
+          <span data-lang="es">investigación</span>
+        </a>
+        <a href="#books" data-nav="books">
+          <span data-lang="en" class="active">books</span>
+          <span data-lang="pt">livros</span>
+          <span data-lang="es">libros</span>
+        </a>
+      </div>
+      <div class="lang-switch">
+        <button onclick="setLang('en')" class="active">EN</button>
+        <button onclick="setLang('pt')">PT</button>
+        <button onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- INTRO -->
+<div class="intro">
+
+  <!-- EN -->
+  <div class="intro-message" data-lang="en" class="active">
+    <span class="line">Hey there! Thank you for visiting.</span>
+    <span class="line">This blog is dedicated to the intersection of my academic research, business-quant simulations, and AI Governance.</span>
+    <span class="line">I'll subdivide texts between introductory <span class="tag-101">101</span> and discussions <span class="tag-201">201</span>. If conceptual background is needed, I'll reference proper links.</span>
+    <span class="line signoff">Any thoughts about it? <a href="https://www.linkedin.com/in/marcus-mvsa/" target="_blank">Text me</a> ;-)</span>
+  </div>
+
+  <!-- PT -->
+  <div class="intro-message" data-lang="pt">
+    <span class="line">Olá! Obrigado pela visita.</span>
+    <span class="line">Este blog é dedicado à intersecção da minha pesquisa acadêmica, simulações business-quant e Governança de IA.</span>
+    <span class="line">Os textos serão divididos entre introdutórios <span class="tag-101">101</span> e discussões <span class="tag-201">201</span>. Quando necessário, referencio os links para base conceitual.</span>
+    <span class="line signoff">Alguma sugestão? <a href="https://www.linkedin.com/in/marcus-mvsa/" target="_blank">Me manda uma mensagem</a> ;-)</span>
+  </div>
+
+  <!-- ES -->
+  <div class="intro-message" data-lang="es">
+    <span class="line">¡Hola! Gracias por visitar.</span>
+    <span class="line">Este blog está dedicado a la intersección de mi investigación académica, simulaciones business-quant y Gobernanza de IA.</span>
+    <span class="line">Los textos se dividen entre introductorios <span class="tag-101">101</span> y discusiones <span class="tag-201">201</span>. Cuando sea necesario, referencio los links de base conceptual.</span>
+    <span class="line signoff">¿Alguna sugerencia? <a href="https://www.linkedin.com/in/marcus-mvsa/" target="_blank">Escríbeme</a> ;-)</span>
+  </div>
+
+  <div class="mini-links">
+    <a href="https://www.linkedin.com/in/marcus-mvsa/" target="_blank">LinkedIn</a>
+    <div class="crests">
+      <img src="assets/usp-brasao.svg" alt="USP" title="Universidade de São Paulo">
+      <div class="crest-sep"></div>
+      <img src="assets/icmc-logo.svg" alt="ICMC-USP" title="Instituto de Ciências Matemáticas e de Computação — USP">
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">AI GOVERNANCE</span>
+    <span class="ticker-item">TEMPORAL GNN <span class="ticker-up">RESEARCH</span></span>
+    <span class="ticker-item">ECONOMIC RESILIENCE INDEX</span>
+    <span class="ticker-item">CROSS-BORDER PAYMENTS</span>
+    <span class="ticker-item">LATAM FINTECH</span>
+    <span class="ticker-item">GRAPH NEURAL NETWORKS</span>
+    <span class="ticker-item">EARLY WARNING SYSTEMS</span>
+    <span class="ticker-item">BUSINESS-QUANT</span>
+    <span class="ticker-item">MACRO INDICATORS</span>
+    <span class="ticker-item">AI STRATEGY</span>
+    <span class="ticker-item">AI GOVERNANCE</span>
+    <span class="ticker-item">TEMPORAL GNN <span class="ticker-up">RESEARCH</span></span>
+    <span class="ticker-item">ECONOMIC RESILIENCE INDEX</span>
+    <span class="ticker-item">CROSS-BORDER PAYMENTS</span>
+    <span class="ticker-item">LATAM FINTECH</span>
+    <span class="ticker-item">GRAPH NEURAL NETWORKS</span>
+    <span class="ticker-item">EARLY WARNING SYSTEMS</span>
+    <span class="ticker-item">BUSINESS-QUANT</span>
+    <span class="ticker-item">MACRO INDICATORS</span>
+    <span class="ticker-item">AI STRATEGY</span>
+  </div>
+</div>
+
+<!-- WRITING -->
+<div class="section" id="writing">
+  <div class="section-header">
+    <h2>
+      <span data-lang="en" class="active">Writing</span>
+      <span data-lang="pt">Escritos</span>
+      <span data-lang="es">Escritos</span>
+    </h2>
+    <a href="#">rss &rarr;</a>
+  </div>
+
+  <div class="post-list">
+
+    <a href="https://tiinside.com.br/22/05/2024/maturidade-em-ia-um-pilar-essencial-para-o-mundo-fiscal-e-contabil/" class="post-item" target="_blank">
+      <span class="post-title">
+        <span class="post-tag tag-press">Press</span>
+        Maturidade em IA: um pilar essencial para o mundo fiscal e contábil
+      </span>
+      <span class="post-meta">TI Inside · May 2024</span>
+    </a>
+
+    <a href="#" class="post-item">
+      <span class="post-title">
+        <span class="post-tag tag-medium">Medium</span>
+        What Graph Neural Networks reveal about economic fragility that traditional indicators miss
+      </span>
+      <span class="post-meta">
+        <span data-lang="en" class="active">Coming soon</span>
+        <span data-lang="pt">Em breve</span>
+        <span data-lang="es">Próximamente</span>
+      </span>
+    </a>
+
+    <a href="#" class="post-item">
+      <span class="post-title">
+        <span class="post-tag tag-medium">Medium</span>
+        Scaling an AI team to 40 people — and why I then made it smaller
+      </span>
+      <span class="post-meta">
+        <span data-lang="en" class="active">Coming soon</span>
+        <span data-lang="pt">Em breve</span>
+        <span data-lang="es">Próximamente</span>
+      </span>
+    </a>
+
+    <a href="#" class="post-item">
+      <span class="post-title">
+        <span class="post-tag tag-medium">Medium</span>
+        AI Governance in LatAm fintech: what regulators aren't asking yet
+      </span>
+      <span class="post-meta">
+        <span data-lang="en" class="active">Coming soon</span>
+        <span data-lang="pt">Em breve</span>
+        <span data-lang="es">Próximamente</span>
+      </span>
+    </a>
+
+  </div>
+</div>
+
+<!-- NOTEBOOKS -->
+<div class="section" id="notebooks">
+  <div class="section-header">
+    <h2>
+      <span data-lang="en" class="active">Interactive Notebooks</span>
+      <span data-lang="pt">Notebooks Interativos</span>
+      <span data-lang="es">Notebooks Interactivos</span>
+    </h2>
+    <a href="https://github.com/marcus-mvsa/EconoGNN" target="_blank">
+      <span data-lang="en" class="active">view all on github &rarr;</span>
+      <span data-lang="pt">ver tudo no github &rarr;</span>
+      <span data-lang="es">ver todo en github &rarr;</span>
+    </a>
+  </div>
+
+  <div class="notebook-grid">
+
+    <div class="notebook-card">
+      <span class="nb-lang">Python</span>
+      <h3>Graph Neural Networks — from scratch</h3>
+      <p>
+        <span data-lang="en" class="active">Build a GNN step by step. No frameworks, just numpy. Understand message passing, aggregation, and why graphs beat tabular data for connected systems.</span>
+        <span data-lang="pt">Construa uma GNN passo a passo. Sem frameworks, só numpy. Entenda message passing, agregação, e por que grafos superam dados tabulares em sistemas conectados.</span>
+        <span data-lang="es">Construye una GNN paso a paso. Sin frameworks, solo numpy. Entiende message passing, agregación, y por qué los grafos superan datos tabulares en sistemas conectados.</span>
+      </p>
+      <div class="nb-links">
+        <a href="#" target="_blank">GitHub</a>
+        <a href="#" target="_blank">NotebookLab</a>
+      </div>
+    </div>
+
+    <div class="notebook-card">
+      <span class="nb-lang">Python</span>
+      <h3>
+        <span data-lang="en" class="active">Economic networks as graphs</span>
+        <span data-lang="pt">Redes econômicas como grafos</span>
+        <span data-lang="es">Redes económicas como grafos</span>
+      </h3>
+      <p>
+        <span data-lang="en" class="active">How to model global trade and financial flows as a dynamic graph. Visualize how shocks propagate between countries using real IMF data.</span>
+        <span data-lang="pt">Como modelar fluxos comerciais e financeiros globais como grafos dinâmicos. Visualize como choques se propagam entre países usando dados reais do FMI.</span>
+        <span data-lang="es">Cómo modelar flujos comerciales y financieros globales como grafos dinámicos. Visualiza cómo los shocks se propagan entre países usando datos reales del FMI.</span>
+      </p>
+      <div class="nb-links">
+        <a href="#" target="_blank">GitHub</a>
+        <a href="#" target="_blank">NotebookLab</a>
+      </div>
+    </div>
+
+    <div class="notebook-card">
+      <span class="nb-lang">Python</span>
+      <h3>
+        <span data-lang="en" class="active">Temporal patterns in macro data</span>
+        <span data-lang="pt">Padrões temporais em dados macro</span>
+        <span data-lang="es">Patrones temporales en datos macro</span>
+      </h3>
+      <p>
+        <span data-lang="en" class="active">Detect temporal patterns in macroeconomic indicators. Compare LSTM vs Temporal GNN approaches for capturing sequential economic signals.</span>
+        <span data-lang="pt">Detecte padrões temporais em indicadores macroeconômicos. Compare abordagens LSTM vs Temporal GNN para capturar sinais econômicos sequenciais.</span>
+        <span data-lang="es">Detecta patrones temporales en indicadores macroeconómicos. Compara enfoques LSTM vs Temporal GNN para capturar señales económicas secuenciales.</span>
+      </p>
+      <div class="nb-links">
+        <a href="#" target="_blank">GitHub</a>
+        <a href="#" target="_blank">NotebookLab</a>
+      </div>
+    </div>
+
+    <div class="notebook-card">
+      <span class="nb-lang">Python</span>
+      <h3>EconoGNN — early warning demo</h3>
+      <p>
+        <span data-lang="en" class="active">Run the EconoGNN framework on sample data. See how it identifies economic vulnerability signals before conventional indicators react.</span>
+        <span data-lang="pt">Execute o framework EconoGNN em dados de exemplo. Veja como ele identifica sinais de vulnerabilidade econômica antes dos indicadores convencionais reagirem.</span>
+        <span data-lang="es">Ejecuta el framework EconoGNN con datos de ejemplo. Observa cómo identifica señales de vulnerabilidad económica antes de que reaccionen los indicadores convencionales.</span>
+      </p>
+      <div class="nb-links">
+        <a href="#" target="_blank">GitHub</a>
+        <a href="#" target="_blank">NotebookLab</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- RESEARCH -->
+<div class="section" id="research">
+  <div class="section-header">
+    <h2>
+      <span data-lang="en" class="active">Research & Publications</span>
+      <span data-lang="pt">Pesquisa & Publicações</span>
+      <span data-lang="es">Investigación & Publicaciones</span>
+    </h2>
+    <a href="#" target="_blank">google scholar &rarr;</a>
+  </div>
+
+  <div class="post-list">
+
+    <a href="#" class="post-item" target="_blank">
+      <span class="post-title">
+        <span class="post-tag tag-paper">PLOS ONE</span>
+        Early Warning Systems for the Global Economy: Leveraging Temporal Graph Neural Networks to Safeguard Regional Resilience
+      </span>
+      <span class="post-meta">2026</span>
+    </a>
+
+    <a href="#" class="post-item" target="_blank">
+      <span class="post-title">
+        <span class="post-tag tag-paper">SBBD</span>
+        <span data-lang="en" class="active">Publication during PhD — Brazilian Symposium on Databases</span>
+        <span data-lang="pt">Publicação durante o PhD — Simpósio Brasileiro de Banco de Dados</span>
+        <span data-lang="es">Publicación durante el PhD — Simposio Brasileño de Bases de Datos</span>
+      </span>
+      <span class="post-meta">PhD · USP</span>
+    </a>
+
+    <a href="#" class="post-item" target="_blank">
+      <span class="post-title">
+        <span class="post-tag tag-paper">Paper</span>
+        <span data-lang="en" class="active">3 publications during graduation</span>
+        <span data-lang="pt">3 publicações durante a graduação</span>
+        <span data-lang="es">3 publicaciones durante la graduación</span>
+      </span>
+      <span class="post-meta">
+        <span data-lang="en" class="active">Graduation</span>
+        <span data-lang="pt">Graduação</span>
+        <span data-lang="es">Graduación</span>
+      </span>
+    </a>
+
+  </div>
+</div>
+
+<!-- BOOKS -->
+<div class="section" id="books">
+  <div class="section-header">
+    <h2>
+      <span data-lang="en" class="active">Recommended Books</span>
+      <span data-lang="pt">Livros Recomendados</span>
+      <span data-lang="es">Libros Recomendados</span>
+    </h2>
+  </div>
+
+  <div class="book-grid">
+
+    <div class="book-card">
+      <span class="book-category cat-ai">AI</span>
+      <h3>The Alignment Problem</h3>
+      <div class="book-author">Brian Christian</div>
+      <div class="book-note">
+        <span data-lang="en" class="active">One of the clearest framings of why AI governance matters. It bridges technical alignment with real-world consequences — essential for anyone building AI systems at scale.</span>
+        <span data-lang="pt">Uma das melhores formulações sobre por que governança de IA importa. Conecta alinhamento técnico com consequências reais — essencial para quem constrói sistemas de AI em escala.</span>
+        <span data-lang="es">Una de las mejores formulaciones de por qué importa la gobernanza de IA. Conecta alineamiento técnico con consecuencias reales — esencial para quien construye sistemas de IA a escala.</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <span class="book-category cat-econ">Economics</span>
+      <h3>The Network Effects Bible</h3>
+      <div class="book-author">NFX / James Currier</div>
+      <div class="book-note">
+        <span data-lang="en" class="active">Not a traditional book, but a foundational framework. Understanding network effects is critical for modeling economic interconnections — the same intuition behind graph-based economic modeling.</span>
+        <span data-lang="pt">Não é um livro tradicional, mas um framework fundamental. Entender efeitos de rede é crítico para modelar interconexões econômicas — a mesma intuição por trás de modelagem econômica baseada em grafos.</span>
+        <span data-lang="es">No es un libro tradicional, pero sí un framework fundamental. Entender efectos de red es crítico para modelar interconexiones económicas — la misma intuición detrás del modelado económico basado en grafos.</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <span class="book-category cat-strategy">Strategy</span>
+      <h3>An Elegant Puzzle</h3>
+      <div class="book-author">Will Larson</div>
+      <div class="book-note">
+        <span data-lang="en" class="active">The best book on engineering management I've read. Covers team sizing, organizational design, and technical strategy — directly applicable to scaling and then decentralizing AI teams.</span>
+        <span data-lang="pt">O melhor livro sobre gestão de engenharia que já li. Cobre dimensionamento de times, design organizacional e estratégia técnica — diretamente aplicável a escalar e depois descentralizar times de IA.</span>
+        <span data-lang="es">El mejor libro sobre gestión de ingeniería que he leído. Cubre dimensionamiento de equipos, diseño organizacional y estrategia técnica — directamente aplicable a escalar y luego descentralizar equipos de IA.</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <span class="book-category cat-gov">Governance</span>
+      <h3>Power and Prediction</h3>
+      <div class="book-author">Ajay Agrawal, Joshua Gans, Avi Goldfarb</div>
+      <div class="book-note">
+        <span data-lang="en" class="active">A sharp analysis of AI as a decision-making technology. It reframes the AI governance conversation around prediction systems and institutional adaptation — exactly where policy meets implementation.</span>
+        <span data-lang="pt">Uma análise afiada da IA como tecnologia de tomada de decisão. Reformula a conversa sobre governança de IA em torno de sistemas de previsão e adaptação institucional — exatamente onde política encontra implementação.</span>
+        <span data-lang="es">Un análisis agudo de la IA como tecnología de toma de decisiones. Reformula la conversación sobre gobernanza de IA en torno a sistemas de predicción y adaptación institucional — exactamente donde la política se encuentra con la implementación.</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <span class="book-category cat-econ">Economics</span>
+      <h3>Complexity Economics</h3>
+      <div class="book-author">W. Brian Arthur</div>
+      <div class="book-note">
+        <span data-lang="en" class="active">Arthur challenges equilibrium-based economics with a view that economies are living, adaptive systems. This is the intellectual foundation for using graph neural networks to study economic resilience.</span>
+        <span data-lang="pt">Arthur desafia a economia baseada em equilíbrio com uma visão de que economias são sistemas vivos e adaptativos. Esta é a base intelectual para usar redes neurais em grafos no estudo de resiliência econômica.</span>
+        <span data-lang="es">Arthur desafía la economía basada en equilibrio con una visión de que las economías son sistemas vivos y adaptativos. Esta es la base intelectual para usar redes neuronales en grafos para estudiar resiliencia económica.</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <span class="book-category cat-ai">AI</span>
+      <h3>Designing Machine Learning Systems</h3>
+      <div class="book-author">Chip Huyen</div>
+      <div class="book-note">
+        <span data-lang="en" class="active">The most practical guide for production ML I know. It fills the gap between academic ML and the messy reality of deploying models in real companies — where governance actually happens.</span>
+        <span data-lang="pt">O guia mais prático para ML em produção que conheço. Preenche a lacuna entre ML acadêmico e a realidade complexa de colocar modelos em produção — onde governança realmente acontece.</span>
+        <span data-lang="es">La guía más práctica para ML en producción que conozco. Llena la brecha entre ML académico y la realidad compleja de desplegar modelos en empresas reales — donde la gobernanza realmente ocurre.</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/marcus-mvsa/" target="_blank">LinkedIn</a>
+  </div>
+  &copy; 2026 Marcus Araujo
+</footer>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+  document.querySelector('.lang-switch button[onclick="setLang(\'' + lang + '\')"]').classList.add('active');
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    el.classList.toggle('active', el.dataset.lang === lang);
+  });
+  document.documentElement.lang = lang;
+}
+// detect browser language
+(function() {
+  const bl = navigator.language || navigator.userLanguage || 'en';
+  if (bl.startsWith('pt')) setLang('pt');
+  else if (bl.startsWith('es')) setLang('es');
+  else setLang('en');
+})();
+</script>
+
+</body>
+</html>
