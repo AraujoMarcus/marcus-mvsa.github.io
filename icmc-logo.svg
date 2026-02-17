@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- ICMC-USP Trefoil Knot Logo -->
+  <defs>
+    <linearGradient id="knotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A6FA5"/>
+      <stop offset="50%" style="stop-color:#2D5A8E"/>
+      <stop offset="100%" style="stop-color:#1B4070"/>
+    </linearGradient>
+    <!-- Clip paths for knot crossings -->
+    <clipPath id="clipTop">
+      <rect x="0" y="0" width="120" height="52"/>
+    </clipPath>
+    <clipPath id="clipBottomLeft">
+      <polygon points="0,52 60,52 35,120 0,120"/>
+    </clipPath>
+    <clipPath id="clipBottomRight">
+      <polygon points="60,52 120,52 120,120 85,120"/>
+    </clipPath>
+  </defs>
+
+  <g transform="translate(60,62)">
+    <!-- Three interlocking loops forming trefoil knot -->
+
+    <!-- Loop 1 - Top -->
+    <ellipse cx="0" cy="-22" rx="22" ry="22"
+             fill="none" stroke="url(#knotGrad)" stroke-width="8"
+             stroke-linecap="round"/>
+
+    <!-- Loop 2 - Bottom Left -->
+    <ellipse cx="-19" cy="11" rx="22" ry="22"
+             fill="none" stroke="url(#knotGrad)" stroke-width="8"
+             stroke-linecap="round"/>
+
+    <!-- Loop 3 - Bottom Right -->
+    <ellipse cx="19" cy="11" rx="22" ry="22"
+             fill="none" stroke="url(#knotGrad)" stroke-width="8"
+             stroke-linecap="round"/>
+
+    <!-- Knot crossing overlays - creates the interlocking effect -->
+    <!-- Center mask -->
+    <circle cx="0" cy="0" r="12" fill="white" opacity="0.85"/>
+
+    <!-- Redraw crossing segments on top for knot effect -->
+    <!-- Top loop comes over right loop -->
+    <path d="M10,-8 Q18,-18 14,-28" fill="none" stroke="url(#knotGrad)" stroke-width="8" stroke-linecap="round"/>
+    <!-- Right loop comes over left loop -->
+    <path d="M6,10 Q18,18 30,12" fill="none" stroke="url(#knotGrad)" stroke-width="8" stroke-linecap="round"/>
+    <!-- Left loop comes over top loop -->
+    <path d="M-10,-8 Q-18,-2 -14,10" fill="none" stroke="url(#knotGrad)" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>
